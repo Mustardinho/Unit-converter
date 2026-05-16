@@ -1,6 +1,3 @@
-# Unit-converter
-A web app that converts meassures
-
 # Unit Converter Web Application
 
 A lightweight, responsive, full-stack web application that handles conversions between various units of measurement across different categories. Built with Python and Flask, this project demonstrates foundational concepts of server-side web development, the HTTP request-response cycle, and dynamic UI rendering without relying on a database.
