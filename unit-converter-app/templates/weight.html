@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="converter-container">
+        <h1>Unit Converter</h1>
+        <nav class="category-selector">
+            <a href="/length.html" class="category-link">Length</a>
+            <a href="/weight" class="category-link active">Weight</a>
+            <a href="/temp.html" class="category-link">Temperature</a>
+        </nav>
+        
+        <form action="/weight.html" method="POST">
+            <div class="form-field">
+                <label class="label">Enter the weight to convert</label>
+                <input type="number" step="any" class="sketchy-input" name="weight_value" value="{{ weight_value }}" required>
+            </div>
+
+            <div class="form-field">
+                <label class="label">Unit to convert from</label>
+                <select class="sketchy-input" name="unit_from">
+                    <option value="milligram" {% if unit_from == 'milligram' %}selected{% endif %}>Milligram (mg)</option>
+                    <option value="gram" {% if unit_from == 'gram' %}selected{% endif %}>Gram (g)</option>
+                    <option value="kilogram" {% if unit_from == 'kilogram' %}selected{% endif %}>Kilogram (km)</option>
+                    <option value="ounce" {% if unit_from == 'ounce' %}selected{% endif %}>Ounce (oz)</option>
+                    <option value="pound" {% if unit_from == 'pound' %}selected{% endif %}>Pound (lb)</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label class="label">Unit to convert to</label>
+                <select class="sketchy-input" name="unit_to">
+                    <option value="milligram" {% if unit_to == 'milligram' %}selected{% endif %}>Milligram (mg)</option>
+                    <option value="gram" {% if unit_to == 'gram' %}selected{% endif %}>Gram (g)</option>
+                    <option value="kilogram" {% if unit_to == 'kilogram' %}selected{% endif %}>Kilogram (km)</option>
+                    <option value="ounce" {% if unit_to == 'ounce' %}selected{% endif %}>Ounce (oz)</option>
+                    <option value="pound" {% if unit_to == 'pound' %}selected{% endif %}>Pound (lb)</option>
+                </select>
+            </div>
+            <button type="submit" class="convert-button">Convert</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box" style="margin-top: 30px; padding: 15px; border: 3px dashed #333; border-radius: 12px; font-size: 26px; text-align: center; background-color: #f0f7ff;">
+            {{ result }}
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

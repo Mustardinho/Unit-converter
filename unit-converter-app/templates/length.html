@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit converter UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="converter-container">
+        <h1>Unit Converter</h1>
+        <nav class="category-selector">
+            <a href="length.html" class="category-link active">Length</a>
+            <a href="weight.html" class="category-link">Weight</a>
+            <a href="temp.html" class="category-link">Temperature</a>
+        </nav>
+        <form action="/length.html" method="POST">
+            <div class="form-field">
+                <label class="label">Enter the length to convert</label>
+                <input type="text" class="sketchy-input" name="length_value">
+            </div>
+
+            <div class="form-field">
+                <label class="label">Unit to convert from</label>
+                <select class="sketchy-input" name="unit_from">
+                    <option value="meters" {% if unit_from == 'meters' %}selected{% endif %}>Meters (m)</option>
+                    <option value="centimeter" {% if unit_from == 'centimeter' %}selected{% endif %}>Centimeters (cm)</option>
+                    <option value="kilometer" {% if unit_from == 'kilometer' %}selected{% endif %}>Kilometer (km)</option>
+                    <option value="inch" {% if unit_from == 'inch' %}selected{% endif %}>Inch (in)</option>
+                    <option value="foot" {% if unit_from == 'foot' %}selected{% endif %}>Foot (ft)</option>
+                    <option value="yard" {% if unit_from == 'yard' %}selected{% endif %}>Yard (yrd)</option>
+                    <option value="mile" {% if unit_from == 'mile' %}selected{% endif %}>Mile (ml)</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label class="label">Unit to convert to</label>
+                <select class="sketchy-input" name="unit_to">
+                    <option value="meters" {% if unit_to == 'meters' %}selected{% endif %}>Meters (m)</option>
+                    <option value="centimeter" {% if unit_to == 'centimeter' %}selected{% endif %}>Centimeters (cm)</option>
+                    <option value="kilometer" {% if unit_to == 'kilometer' %}selected{% endif %}>Kilometer (km)</option>
+                    <option value="inch" {% if unit_to == 'inch' %}selected{% endif %}>Inch (in)</option>
+                    <option value="foot" {% if unit_to == 'foot' %}selected{% endif %}>Foot (ft)</option>
+                    <option value="yard" {% if unit_to == 'yard' %}selected{% endif %}>Yard (yrd)</option>
+                    <option value="mile" {% if unit_to == 'mile' %}selected{% endif %}>Mile (ml)</option>
+                </select>
+            </div>
+            <button type="submit" class="convert-button">Convert</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box" style="margin-top: 30px; padding: 15px; border: 3px dashed #333; border-radius: 12px; font-size: 26px; text-align: center; background-color: #f0f7ff;">
+            {{ result }}
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
